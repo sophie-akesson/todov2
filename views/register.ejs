@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do - Register</title>
+</head>
+<body>
+    <div>
+        <% if (error) { %>
+            <p><%= error %></p>
+        <% } %>
+        <form action="/register" method="post">
+            <label for="name">Name</label><input id="name" name="name" type="name">
+            <label for="email">Email</label><input id="email" name="email" type="email">
+            <label for="password">Password</label><input id="password" name="password" type="password">
+            <button type="submit">Create account</button>
+        </form>
+        <a href="javascript:history.back()">Back</a>
+    </div>
+</body>
+</html>
