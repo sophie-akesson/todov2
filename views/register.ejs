@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do - Register</title>
-</head>
-<body>
+<%- include('header'); -%>
     <div>
+        <h3>Register</h3>
         <% if (error) { %>
             <p><%= error %></p>
         <% } %>
@@ -19,5 +12,4 @@
         </form>
         <a href="javascript:history.back()">Back</a>
     </div>
-</body>
-</html>
+<%- include('header'); -%>
