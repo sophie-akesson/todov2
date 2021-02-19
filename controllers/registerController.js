@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
 const registerRender = (req, res) => {
-  res.render("register.ejs", { error: "" });
+  res.render("register.ejs", { error: "", user: "" });
 };
 
 const registerSubmit = async (req, res) => {
@@ -21,7 +21,7 @@ const registerSubmit = async (req, res) => {
 
     res.redirect(301, "/login");
   } catch (error) {
-    if(error) return res.render("register.ejs", { error: error })
+    if(error) return res.render("register.ejs", { error: error, user: "" })
   }
 };
 

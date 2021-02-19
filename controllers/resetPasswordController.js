@@ -15,7 +15,7 @@ const transport = nodemailer.createTransport({
 });
 
 const resetRender = (req, res) => {
-  res.render("resetPassword.ejs", { error: "" });
+  res.render("resetPassword.ejs", { error: "", user: "" });
 };
 
 const resetSubmit = async (req, res) => {
@@ -24,7 +24,7 @@ const resetSubmit = async (req, res) => {
   const user = await User.findOne({ email: email });
 
   if (!user)
-    return res.render("resetPassword.ejs", { error: "User does not exist" });
+    return res.render("resetPassword.ejs", { error: "User does not exist", user: "" });
 
   const token = crypto.randomBytes(32).toString("hex");
 
@@ -40,7 +40,7 @@ const resetSubmit = async (req, res) => {
     html: `<h1>Password reset</h1><a href="http://localhost:8000/reset/${user.token}">Click here to set a new password.</a>`,
   });
 
-  res.render("checkMail.ejs", { email: email });
+  res.render("checkMail.ejs", { email: email, user: "" });
 };
 
 const setPasswordRender = async (req, res) => {
@@ -55,11 +55,12 @@ const setPasswordRender = async (req, res) => {
     if (!user)
       return res.render("resetPassword.ejs", {
         error: "Token incorrect or expired, please try again.",
+        user: ""
       });
 
-    return res.render("passwordForm.ejs", { error: "", email: user.email });
+    return res.render("passwordForm.ejs", { error: "", email: user.email, user: "" });
   } catch (error) {
-    res.render("resetPassword.ejs", { error: "Try again" });
+    res.render("resetPassword.ejs", { error: "Try again", user: "" });
   }
 };
 
@@ -67,7 +68,7 @@ const setPasswordSubmit = async (req, res) => {
   const { password, confirmedPassword, email } = req.body;
 
   if (password !== confirmedPassword)
-    return res.render("passwordForm.ejs", { error: "Password does not match", email: email });
+    return res.render("passwordForm.ejs", { error: "Password does not match", email: email, user: "" });
 
   try {
     const user = await User.findOne({ email: email });
@@ -79,7 +80,7 @@ const setPasswordSubmit = async (req, res) => {
 
     return res.redirect(301, "/login");
   } catch (error) {}
-  res.render("passwordForm.ejs", { error: error });
+  res.render("passwordForm.ejs", { error: error, user: "" });
 };
 
 module.exports = {
