@@ -9,7 +9,7 @@
             <% if (day < 10) { day = '0' + day; } %>
             <% const convertedDate = `${year}-${month}-${day}`; %>
             <div>
-                <a href="/complete">Mark complete</a>
+                <a href="/complete/<%= toDo._id %>">Mark complete</a>
                 <p><%= toDo.name %></p>
                 <p><%= convertedDate %></p>
                 <a href="/remove/<%= toDo._id %>">Remove</a>

@@ -1,7 +1,4 @@
 <div>
-    <% if (error) {%>
-        <p>Cannot add new task: <%= error %></p>
-    <% } %>
     <form action="/new" method="post">
         <input type="text" name="name" id="nameInput" value="New to do">
         <% let now = new Date(); %>

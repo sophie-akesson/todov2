@@ -11,7 +11,7 @@ const newToDoSubmit = async (req, res) => {
   } catch (error) {
     return res.render("index.ejs", {
       user: "",
-      error: "Something went wrong with fetching your user",
+      error: "Something went wrong",
       data: "",
     });
   }
@@ -29,10 +29,28 @@ const removeSubmit = async (req, res) => {
   } catch (error) {
     return res.render("index.ejs", {
       user: "",
-      error: "Something went wrong with fetching your user",
+      error: "Something went wrong",
       data: "",
     });
   }
 };
 
-module.exports = { newToDoSubmit, removeSubmit };
+const completeSubmit = async (req, res) => {
+    const toDoId = req.params.id;
+
+  try {
+    const user = await User.findOne({ email: req.user.user.email });
+
+    user.completeTodo(toDoId);
+
+    return res.redirect(301, "/");
+  } catch (error) {
+    return res.render("index.ejs", {
+      user: "",
+      error: "Something went wrong",
+      data: "",
+    });
+  }
+}
+
+module.exports = { newToDoSubmit, removeSubmit, completeSubmit };

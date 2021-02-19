@@ -29,6 +29,15 @@ userSchema.methods.removeToDo = function(id) {
   this.save();
 }
 
+userSchema.methods.completeTodo = function(id) {
+  for(let i = 0; i < this.toDoList.length; i++) {
+    if(this.toDoList[i]._id == id){
+      this.toDoList[i].status = "complete";
+    }
+  }
+  this.save();
+}
+
 const User = mongoose.model("user", userSchema);
 
 module.exports = User;

@@ -6,7 +6,7 @@ const homeRender = async (req, res) => {
         res.render("index.ejs", { user: req.user.user.name, error: "", data: user.toDoList });
     }
     catch(error) {
-        res.render("index.ejs", { user: "", error: "Something went wrong with fetching your user", data: "" });
+        res.render("index.ejs", { user: "", error: "Something went wrong", data: "" });
     }
 }
 
