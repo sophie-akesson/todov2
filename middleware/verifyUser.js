@@ -4,7 +4,7 @@ require("dotenv").config();
 const verifyUser = (req, res, next) => {
   const token = req.cookies.loginToken;
 
-  if (!token) return res.render("login.ejs", { error: "You need to login" });
+  if (!token) return res.render("login.ejs", { error: "" });
 
   const validUser = jwt.verify(token, process.env.JWT_KEY);
 

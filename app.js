@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const homeRoute = require("./routes/homeRoute");
 const registerRoute = require("./routes/registerRoute");
 const loginRoute = require("./routes/loginRoute");
+const resetPasswordRoute = require("./routes/resetPasswordRoute");
 
 require("dotenv").config();
 
@@ -15,7 +16,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(homeRoute, registerRoute, loginRoute);
+app.use(homeRoute, registerRoute, loginRoute, resetPasswordRoute);
 
 mongoose.connect(
   process.env.DB_CONNECTION,
