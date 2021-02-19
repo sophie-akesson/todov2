@@ -1,0 +1,19 @@
+<% if (data.length > 0) { %>
+    <% data.forEach(toDo => { %>
+        <% if (toDo.status === "incomplete") { %>
+            <% const date = toDo.dueDate; %>
+            <% const year = date.getFullYear(); %>
+            <% let month = date.getMonth() + 1; %>
+            <% if (month < 10) { month = '0' + month; } %>
+            <% let day = date.getDate(); %>
+            <% if (day < 10) { day = '0' + day; } %>
+            <% const convertedDate = `${year}-${month}-${day}`; %>
+            <div>
+                <a href="/complete">Mark complete</a>
+                <p><%= toDo.name %></p>
+                <p><%= convertedDate %></p>
+                <a href="/remove">Remove</a>
+            </div>
+        <% } %>
+    <% }); %>
+<% } %>
