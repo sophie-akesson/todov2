@@ -12,7 +12,7 @@
                 <a href="/complete">Mark complete</a>
                 <p><%= toDo.name %></p>
                 <p><%= convertedDate %></p>
-                <a href="/remove">Remove</a>
+                <a href="/remove/<%= toDo._id %>">Remove</a>
             </div>
         <% } %>
     <% }); %>

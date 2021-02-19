@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   token: String,
   tokenExpirationDate: Date,
-  ToDoList: [
+  toDoList: [
     {
       name: { type: String, required: true },
       dueDate: { type: Date, default: Date.now },
@@ -16,7 +16,16 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.addToDo = function(object) {
-  this.ToDoList.push(object);
+  this.toDoList.push(object);
+  this.save();
+}
+
+userSchema.methods.removeToDo = function(id) {
+  for(let i = 0; i < this.toDoList.length; i++) {
+    if(this.toDoList[i]._id == id){
+      this.toDoList.splice(i, 1);
+    }
+  }
   this.save();
 }
 
