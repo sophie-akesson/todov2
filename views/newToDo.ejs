@@ -1,0 +1,15 @@
+<div>
+    <% if (error) {%>
+        <p>Cannot add new task: <%= error %></p>
+    <% } %>
+    <form action="/new" method="post">
+        <input type="text" name="name" id="nameInput" value="New to do">
+        <% let now = new Date(); %>
+        <% let dd = String(now.getDate()).padStart(2, "0"); %>
+        <% let mm = String(now.getMonth() + 1).padStart(2, "0"); %>
+        <% let yyyy = now.getFullYear(); %>
+        <% let defaultDate = `${yyyy}-${mm}-${dd}`; %>
+        <input type="date" name="date" value="<%= defaultDate %>">
+        <button type="submit">Add to do</button>
+    </form>
+</div>

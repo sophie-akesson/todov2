@@ -10,9 +10,15 @@ const userSchema = new mongoose.Schema({
     {
       name: { type: String, required: true },
       dueDate: { type: Date, default: Date.now },
+      status: { type: String, required: true},
     },
   ],
 });
+
+userSchema.methods.addToDo = function(object) {
+  this.ToDoList.push(object);
+  this.save();
+}
 
 const User = mongoose.model("user", userSchema);
 
