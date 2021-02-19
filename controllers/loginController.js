@@ -5,17 +5,17 @@ require("dotenv").config();
 const User = require("../models/user");
 
 const loginRender = (req, res) => {
-  res.render("login.ejs", { error: "" });
+  res.render("login.ejs", { error: "", user: "" });
 };
 
 const loginSubmit = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
 
-  if (!user) return res.render("login.ejs", { error: "Invalid user" });
+  if (!user) return res.render("login.ejs", { error: "Invalid user", user: "" });
 
   const validUser = await bcrypt.compare(req.body.password, user.password);
 
-  if (!validUser) return res.render("login.ejs", { error: "Wrong password" });
+  if (!validUser) return res.render("login.ejs", { error: "Wrong password", user: "" });
 
   const loginToken = await jwt.sign({ user: user }, process.env.JWT_KEY);
 
