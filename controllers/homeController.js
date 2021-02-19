@@ -24,4 +24,8 @@ const newToDoSubmit = async (req, res) => {
     }
 }
 
-module.exports = { homeRender, newToDoSubmit };
+const logoutRender = (req, res) => {
+    res.clearCookie("loginToken").redirect("/");
+}
+
+module.exports = { homeRender, newToDoSubmit, logoutRender };
