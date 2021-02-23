@@ -2,12 +2,13 @@ const User = require("../models/user");
 
 const newToDoSubmit = async (req, res) => {
   const { name, date } = req.body;
+  const path = req.get('referer');
 
   try {
     const user = await User.findOne({ email: req.user.user.email });
 
     user.addToDo({ name: name, dueDate: date, status: "incomplete" });
-    return res.redirect(301, "/");
+    return res.redirect(path);
   } catch (error) {
     return res.render("index.ejs", {
       user: "",
@@ -19,13 +20,14 @@ const newToDoSubmit = async (req, res) => {
 
 const removeSubmit = async (req, res) => {
   const toDoId = req.params.id;
+  const path = req.get('referer');
 
   try {
     const user = await User.findOne({ email: req.user.user.email });
 
     user.removeToDo(toDoId);
 
-    return res.redirect(301, "/");
+    return res.redirect(path);
   } catch (error) {
     return res.render("index.ejs", {
       user: "",
@@ -36,14 +38,15 @@ const removeSubmit = async (req, res) => {
 };
 
 const completeSubmit = async (req, res) => {
-    const toDoId = req.params.id;
+  const toDoId = req.params.id;
+  const path = req.get('referer');
 
   try {
     const user = await User.findOne({ email: req.user.user.email });
 
-    user.completeTodo(toDoId);
+    user.completeToDo(toDoId);
 
-    return res.redirect(301, "/");
+    return res.redirect(path);
   } catch (error) {
     return res.render("index.ejs", {
       user: "",
@@ -51,6 +54,25 @@ const completeSubmit = async (req, res) => {
       data: "",
     });
   }
-}
+};
 
-module.exports = { newToDoSubmit, removeSubmit, completeSubmit };
+const starSubmit = async (req, res) => {
+  const toDoId = req.params.id;
+  const path = req.get('referer');
+
+  try {
+    const user = await User.findOne({ email: req.user.user.email });
+
+    user.toggleStarredToDo(toDoId);
+
+    return res.redirect(path);
+  } catch (error) {
+    return res.render("index.ejs", {
+      user: "",
+      error: error,
+      data: "",
+    });
+  }
+};
+
+module.exports = { newToDoSubmit, removeSubmit, completeSubmit, starSubmit };
