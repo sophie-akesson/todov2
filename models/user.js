@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
       name: { type: String, required: true },
       dueDate: { type: Date, default: Date.now },
       status: { type: String, required: true},
+      starred: { type: Boolean, default: false }
     },
   ],
 });
@@ -29,10 +30,22 @@ userSchema.methods.removeToDo = function(id) {
   this.save();
 }
 
-userSchema.methods.completeTodo = function(id) {
+userSchema.methods.completeToDo = function(id) {
   for(let i = 0; i < this.toDoList.length; i++) {
     if(this.toDoList[i]._id == id){
       this.toDoList[i].status = "complete";
+    }
+  }
+  this.save();
+}
+
+userSchema.methods.toggleStarredToDo = function(id) {
+  for(let i = 0; i < this.toDoList.length; i++) {
+    if(this.toDoList[i]._id == id && this.toDoList[i].starred == false){
+      this.toDoList[i].starred = true;
+    }
+    else if(this.toDoList[i]._id == id && this.toDoList[i].starred == true){
+      this.toDoList[i].starred = false;
     }
   }
   this.save();
