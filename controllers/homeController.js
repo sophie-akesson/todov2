@@ -5,10 +5,16 @@ const homeRender = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.user.user.email });
 
+    let userList = [];
+
+    user.toDoList.forEach((toDo) => {
+      if (toDo.status === "incomplete") userList.push(toDo);
+    });
+
     res.render("index.ejs", {
       user: req.user.user.name,
       error: "",
-      data: user.toDoList,
+      data: userList,
     });
   } catch (error) {
     res.render("index.ejs", { user: "", error: error, data: "" });
@@ -21,7 +27,7 @@ const starredRender = async (req, res) => {
     let userList = [];
 
     user.toDoList.forEach((toDo) => {
-      if (toDo.starred === true) userList.push(toDo);
+      if (toDo.starred === true && toDo.status === "incomplete") userList.push(toDo);
     });
 
     res.render("index.ejs", {
@@ -49,7 +55,26 @@ const dueThisWeekRender = async (req, res) => {
       const dueYear = luxon.DateTime.fromJSDate(toDo.dueDate).year;
       const dueWeek = luxon.DateTime.local(dueYear, dueMonth, dueDay).weekNumber;
 
-      if (dueWeek == currentWeek) userList.push(toDo);
+      if (dueWeek === currentWeek && toDo.status === "incomplete") userList.push(toDo);
+    });
+
+    res.render("index.ejs", {
+      user: req.user.user.name,
+      error: "",
+      data: userList,
+    });
+  } catch (error) {
+    res.render("index.ejs", { user: "", error: error, data: "" });
+  }
+};
+
+const completedToDosRender = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.user.user.email });
+    let userList = [];
+
+    user.toDoList.forEach((toDo) => {
+    if (toDo.status == "complete") userList.push(toDo);
     });
 
     res.render("index.ejs", {
@@ -66,4 +91,4 @@ const logoutRender = (req, res) => {
   res.clearCookie("loginToken").redirect("/");
 };
 
-module.exports = { homeRender, starredRender, dueThisWeekRender, logoutRender };
+module.exports = { homeRender, starredRender, dueThisWeekRender, completedToDosRender, logoutRender };
