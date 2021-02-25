@@ -2,6 +2,8 @@ const User = require("../models/user");
 const luxon = require("luxon");
 
 const homeRender = async (req, res) => {
+  const count = +req.query.count || 5;
+
   try {
     const user = await User.findOne({ email: req.user.user.email });
 
@@ -15,13 +17,17 @@ const homeRender = async (req, res) => {
       user: req.user.user.name,
       error: "",
       data: userList,
+      nrOfToDos: userList.length,
+      count: count,
+      path: "/",
     });
   } catch (error) {
-    res.render("index.ejs", { user: "", error: error, data: "" });
+    res.render("index.ejs", { user: "", error: error, data: "", count: count, path: "/", });
   }
 };
 
 const starredRender = async (req, res) => {
+  const count = +req.query.count || 5;
   try {
     const user = await User.findOne({ email: req.user.user.email });
     let userList = [];
@@ -34,13 +40,17 @@ const starredRender = async (req, res) => {
       user: req.user.user.name,
       error: "",
       data: userList,
+      nrOfToDos: userList.length,
+      count: count,
+      path: "/starred",
     });
   } catch (error) {
-    res.render("index.ejs", { user: "", error: error, data: "" });
+    res.render("index.ejs", { user: "", error: error, data: "", count: count, path: "/starred", });
   }
 };
 
 const dueThisWeekRender = async (req, res) => {
+  const count = +req.query.count || 5;
   try {
     const user = await User.findOne({ email: req.user.user.email });
     let userList = [];
@@ -62,13 +72,17 @@ const dueThisWeekRender = async (req, res) => {
       user: req.user.user.name,
       error: "",
       data: userList,
+      nrOfToDos: userList.length,
+      count: count,
+      path: "/due",
     });
   } catch (error) {
-    res.render("index.ejs", { user: "", error: error, data: "" });
+    res.render("index.ejs", { user: "", error: error, data: "", count: count, path: "/due", });
   }
 };
 
 const completedToDosRender = async (req, res) => {
+  const count = +req.query.count || 5;
   try {
     const user = await User.findOne({ email: req.user.user.email });
     let userList = [];
@@ -81,9 +95,12 @@ const completedToDosRender = async (req, res) => {
       user: req.user.user.name,
       error: "",
       data: userList,
+      nrOfToDos: userList.length,
+      count: count,
+      path: "/completed",
     });
   } catch (error) {
-    res.render("index.ejs", { user: "", error: error, data: "" });
+    res.render("index.ejs", { user: "", error: error, data: "", path: "/completed", });
   }
 };
 
