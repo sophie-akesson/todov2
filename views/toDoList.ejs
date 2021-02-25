@@ -1,6 +1,6 @@
 <% if (data.length > 0) { %>
-    <% data.forEach(toDo => { %>
-        <% const date = toDo.dueDate; %>
+    <% for(let i = 0; i < count && i < data.length; i++) { %>
+        <% const date = data[i].dueDate; %>
         <% const year = date.getFullYear(); %>
         <% let month = date.getMonth() + 1; %>
         <% if (month < 10) { month = '0' + month; } %>
@@ -8,11 +8,21 @@
         <% if (day < 10) { day = '0' + day; } %>
         <% const convertedDate = `${year}-${month}-${day}`; %>
         <div>
-            <a href="/complete/<%= toDo._id %>">Mark complete</a>
-            <p><%= toDo.name %></p>
+        <% if(path !== "/completed") { %>
+            <a href="/complete/<%= data[i]._id %>">Mark complete</a>
+        <% } %>
+            <p><%= data[i].name %></p>
             <p><%= convertedDate %></p>
-            <a href="/star/<%= toDo._id %>">Star</a>
-            <a href="/remove/<%= toDo._id %>">Remove</a>
+        <% if(path !== "/completed") { %>
+            <a href="/star/<%= data[i]._id %>">Star</a>
+        <% } %>
+            <a href="/remove/<%= data[i]._id %>">Remove</a>
         </div>
-    <% }); %>
+    <% } %>
+<% } %>
+<% if (count < nrOfToDos) { %>
+    <a href="<%= path %>?count=<%= count + 5 %>">Load more</a>
+<% } %>
+<% if (count > 5) { %>
+    <a href="<%= path %>">Show less</a>
 <% } %>
