@@ -8,10 +8,8 @@ const userSchema = new mongoose.Schema({
   tokenExpirationDate: Date,
   toDoList: [
     {
-      name: { type: String, required: true },
-      dueDate: { type: Date, default: Date.now },
-      status: { type: String, required: true},
-      starred: { type: Boolean, default: false }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "todo",
     },
   ],
 });
