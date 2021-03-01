@@ -19,36 +19,6 @@ userSchema.methods.addToDo = function(object) {
   this.save();
 }
 
-userSchema.methods.removeToDo = function(id) {
-  for(let i = 0; i < this.toDoList.length; i++) {
-    if(this.toDoList[i]._id == id){
-      this.toDoList.splice(i, 1);
-    }
-  }
-  this.save();
-}
-
-userSchema.methods.completeToDo = function(id) {
-  for(let i = 0; i < this.toDoList.length; i++) {
-    if(this.toDoList[i]._id == id){
-      this.toDoList[i].status = "complete";
-    }
-  }
-  this.save();
-}
-
-userSchema.methods.toggleStarredToDo = function(id) {
-  for(let i = 0; i < this.toDoList.length; i++) {
-    if(this.toDoList[i]._id == id && this.toDoList[i].starred == false){
-      this.toDoList[i].starred = true;
-    }
-    else if(this.toDoList[i]._id == id && this.toDoList[i].starred == true){
-      this.toDoList[i].starred = false;
-    }
-  }
-  this.save();
-}
-
 const User = mongoose.model("user", userSchema);
 
 module.exports = User;
