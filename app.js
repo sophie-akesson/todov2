@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const sass = require("node-sass-middleware");
 
 const homeRoute = require("./routes/homeRoute");
 const registerRoute = require("./routes/registerRoute");
@@ -15,6 +16,17 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.use(
+  sass({
+    src: __dirname + "/scss",
+    dest: __dirname + "/public/style",
+    debug: true,
+    outputStyle: "compressed",
+    prefix: "/style",
+  }),
+  express.static(__dirname + "/public")
+);
 
 app.use(homeRoute, registerRoute, loginRoute, resetPasswordRoute);
 

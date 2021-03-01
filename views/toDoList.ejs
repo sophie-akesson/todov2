@@ -1,28 +1,40 @@
 <% if (data.length > 0) { %>
-    <% for(let i = 0; i < count && i < data.length; i++) { %>
-        <% const date = data[i].dueDate; %>
-        <% const year = date.getFullYear(); %>
-        <% let month = date.getMonth() + 1; %>
-        <% if (month < 10) { month = '0' + month; } %>
-        <% let day = date.getDate(); %>
-        <% if (day < 10) { day = '0' + day; } %>
-        <% const convertedDate = `${year}-${month}-${day}`; %>
-        <div>
-        <% if(path !== "/completed") { %>
-            <a href="/complete/<%= data[i]._id %>">Mark complete</a>
+    <ul>
+        <% for(let i = 0; i < count && i < data.length; i++) { %>
+            <% const date = data[i].dueDate; %>
+            <% const year = date.getFullYear(); %>
+            <% let month = date.getMonth() + 1; %>
+            <% if (month < 10) { month = '0' + month; } %>
+            <% let day = date.getDate(); %>
+            <% if (day < 10) { day = '0' + day; } %>
+            <% const convertedDate = `${year}-${month}-${day}`; %>
+            <li>
+            <% if(path !== "/completed") { %>
+                <form class="completeForm" action="/complete/<%= data[i]._id %>">
+                    <label><input type="checkbox" name="checkbox" onChange="this.form.submit()"><%= data[i].name %></label>
+                </form>
+            <% } %>
+            <% if(path === "/completed") { %>
+                <form class="completeForm" action="/complete/<%= data[i]._id %>">
+                    <label><input type="checkbox" name="checkbox" onChange="this.form.submit()" disabled checked><%= data[i].name %></label>
+                </form>
+            <% } %>
+            <div>
+                <p><%= convertedDate %></p>
+                <div class="taskLinks">
+                    <% if(path !== "/completed") { %>
+                        <a href="/star/<%= data[i]._id %>"><i class="fas fa-star fa-lg"></i></a>
+                    <% } %>
+                    <a href="/remove/<%= data[i]._id %>"><i class="fas fa-times-circle fa-lg"></i></a>
+                </div> 
+            </div>
+            </li>
         <% } %>
-            <p><%= data[i].name %></p>
-            <p><%= convertedDate %></p>
-        <% if(path !== "/completed") { %>
-            <a href="/star/<%= data[i]._id %>">Star</a>
-        <% } %>
-            <a href="/remove/<%= data[i]._id %>">Remove</a>
-        </div>
-    <% } %>
+    </ul>
 <% } %>
 <% if (count < nrOfToDos) { %>
-    <a href="<%= path %>?count=<%= count + 5 %>">Load more</a>
+    <a class="loadMoreLink" href="<%= path %>?count=<%= count + 5 %>">Load more</a>
 <% } %>
 <% if (count > 5) { %>
-    <a href="<%= path %>">Show less</a>
+    <a class="loadMoreLink" href="<%= path %>">Show less</a>
 <% } %>
