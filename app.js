@@ -17,6 +17,17 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use(
+  sass({
+    src: __dirname + "/scss",
+    dest: __dirname + "/public/style",
+    debug: true,
+    outputStyle: "compressed",
+    prefix: "/style",
+  }),
+  express.static(__dirname + "/public")
+);
+
 app.use(homeRoute, registerRoute, loginRoute, resetPasswordRoute);
 
 mongoose.connect(
