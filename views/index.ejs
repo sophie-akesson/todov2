@@ -3,7 +3,18 @@
     <% if (error) {%>
         <p><%= error %></p>
     <% } %>
-    <h3>All tasks</h3>
+    <% if(path === "/") { %>
+        <h3>All to dos</h3>
+      <% } %>
+    <% if(path === "/starred") { %>
+        <h3>Starred</h3>
+    <% } %>
+    <% if(path === "/due") { %>
+        <h3>Due this week</h3>
+      <% } %>
+    <% if(path === "/completed") { %>
+      <h3>Completed to dos</h3>
+    <% } %>
     <%- include('toDoList'); -%>
 </main>
 <%- include('footer'); -%>

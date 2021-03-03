@@ -8,13 +8,14 @@
             <% let day = date.getDate(); %>
             <% if (day < 10) { day = '0' + day; } %>
             <% const convertedDate = `${year}-${month}-${day}`; %>
-            <li>
             <% if(path !== "/completed") { %>
+            <li>
                 <form class="completeForm" action="/complete/<%= data[i]._id %>">
                     <label><input type="checkbox" name="checkbox" onChange="this.form.submit()"><%= data[i].name %></label>
                 </form>
             <% } %>
             <% if(path === "/completed") { %>
+            <li class="compeltedListItem">
                 <form class="completeForm" action="/complete/<%= data[i]._id %>">
                     <label><input type="checkbox" name="checkbox" onChange="this.form.submit()" disabled checked><%= data[i].name %></label>
                 </form>
