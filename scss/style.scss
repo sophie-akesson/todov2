@@ -46,9 +46,12 @@ main {
   .loadMoreLink:hover {
     color: $secondary-color;
   }
-  h3,
   .loadMoreLink {
     margin: 1rem;
+  }
+  h3 {
+    margin: 0;
+    margin-left: 1rem;
   }
 }
 
