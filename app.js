@@ -3,6 +3,15 @@ const app = express();
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const sass = require("node-sass-middleware");
+const https = require('https');
+const fs = require('fs');
+
+const options = {
+  key: fs.readFileSync(__dirname + '/key.pem'),
+  cert: fs.readFileSync(__dirname + '/cert.pem'),
+};
+
+const server = https.createServer(options, app);
 
 const homeRoute = require("./routes/homeRoute");
 const registerRoute = require("./routes/registerRoute");
@@ -36,8 +45,12 @@ mongoose.connect(
   (error) => {
     if (error) return;
 
-    app.listen(process.env.PORT || 3000, () => {
+    https.createServer(options, app).listen(process.env.PORT || 3000, () => {
       console.log("App running on port 3000");
     });
+
+    // app.listen(process.env.PORT || 3000, () => {
+    //   console.log("App running on port 3000");
+    // });
   }
 );
