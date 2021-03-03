@@ -15,17 +15,23 @@ header {
         margin-bottom: 0;
       }
       .fas {
+        width: 2rem;
         padding: 2rem;
       }
       .fa-times {
-        display: none;
+        position:absolute;
+        opacity: 0;
+      }
+      .fa-bars {
+        position: static;
+        transition: opacity ease-in-out 0.5s;
       }
     }
     #menuDiv {
       max-height: 0;
       width: 100%;
-      transition: max-height ease-in-out 1s;
       overflow: hidden;
+      transition: max-height ease-in-out 1s;
       a:link, a:visited {
         display: block;
         padding: 1rem;
@@ -43,17 +49,21 @@ header {
       position: absolute;
       top: 0;
       left: 0;
-      margin: 1rem;
+      margin: 2rem;
       width: 4rem;
       height: 4rem;
       cursor: pointer;
+      z-index: 100;
     }
-    input:checked ~ .fa-times {
-      display: inline-block;
+    input:checked ~ #iconsDiv .fa-times {
+      position: static;
+      opacity: 1;
+      transition: opacity ease-in-out 0.5s;
     }
   
-    input:checked ~ .fa-bars {
-      display: none;
+    input:checked ~ #iconsDiv .fa-bars {
+      position: absolute;
+      opacity: 0;
     }
   
     input:checked ~ #menuDiv {
