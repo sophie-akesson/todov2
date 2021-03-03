@@ -9,6 +9,9 @@ ul {
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba($color: #e6e6e6, $alpha: 1);
+    input {
+      cursor: pointer;
+    }
   }
   li:last-child {
     border-bottom: none;
@@ -16,7 +19,6 @@ ul {
   li:hover {
     border-left: 1rem solid $accent-color;
     padding-left: 1rem;
-    cursor: pointer;
     label {
       cursor: pointer;
     }
@@ -26,6 +28,15 @@ ul {
   }
   li:last-child:hover {
     border-radius: 0px 0px 0px 5px;
+  }
+  .compeltedListItem:hover {
+    cursor: default;
+    input {
+      cursor: default;
+    }
+    label {
+      cursor: default;
+    }
   }
   .completeForm {
     margin-right: auto;
@@ -52,16 +63,16 @@ ul {
     justify-content: flex-end;
     align-items: center;
     .fa-star {
-    color: rgb(255, 196, 0);
+      color: rgb(255, 196, 0);
       padding-top: 1rem;
     }
     .fa-times-circle {
-        color: rgb(161, 161, 161);
+      color: rgb(161, 161, 161);
       padding-top: 1.4rem;
       padding-left: 2rem;
     }
     .fas:hover {
-        opacity: 0.5;
+      opacity: 0.5;
     }
   }
 }
