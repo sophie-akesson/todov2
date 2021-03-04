@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const { loginRender, loginSubmit, loginFacebookRedirect, facebookCode, facebookToken } = require("../controllers/loginController");
+const { loginRender, loginSubmit, loginFacebookRedirect, facebookLogin } = require("../controllers/loginController");
 
 router.get("/login", loginRender);
 router.post("/login", loginSubmit);
-router.get("/authenticate/facebook", loginFacebookRedirect);
-router.get("/authenticate/facebook/token", facebookCode);
-router.post("/authenticate/facebook/token", facebookToken);
+router.get("/auth/facebook", loginFacebookRedirect);
+router.get("/auth/facebook/login", facebookLogin);
 
 module.exports = router;

@@ -7,11 +7,9 @@ const https = require('https');
 const fs = require('fs');
 
 const options = {
-  key: fs.readFileSync(__dirname + '/key.pem'),
-  cert: fs.readFileSync(__dirname + '/cert.pem'),
+  key: fs.readFileSync(__dirname + '/server.key'),
+  cert: fs.readFileSync(__dirname + '/server.cert'),
 };
-
-const server = https.createServer(options, app);
 
 const homeRoute = require("./routes/homeRoute");
 const registerRoute = require("./routes/registerRoute");
