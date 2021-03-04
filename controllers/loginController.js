@@ -33,31 +33,24 @@ const loginSubmit = async (req, res) => {
 };
 
 const loginFacebookRedirect = (req, res) => {
-  const redirectUrl = "https://localhost:3000/authenticate/facebook/handshake"
+  const redirectUrl = "https://localhost:3000/authenticate/facebook/token"
   const appId = process.env.FACEBOOK_ID;
   const state = process.env.FACEBOOK_STATE;
 
   res.redirect(`https://www.facebook.com/v10.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUrl}&state=${state}`);
 }
 
-const facebookAuth = (req, res) => {
-  const redirectUrl = "https://localhost:3000/"
+const facebookCode = (req, res) => {
+  const redirectUrl = "https://localhost:3000/authenticate/facebook/token"
   const appId = process.env.FACEBOOK_ID;
-  const state = process.env.FACEBOOK_STATE;
   const secret = process.env.FACEBOOK_SECRET_KEY;
   const code = req.query.code;
 
-  res.redirect(`https://www.facebook.com/v10.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUrl}&client_secret=${secret}&code=${code}`);
+  res.redirect(`https://graph.facebook.com/v10.0/oauth/access_token?client_id=${appId}&redirect_uri=${redirectUrl}&client_secret=${secret}&code=${code}`);
 }
 
 const facebookToken = (req, res) => {
-  const redirectUrl = "https://localhost:3000/"
-  const appId = process.env.FACEBOOK_ID;
-  const state = process.env.FACEBOOK_STATE;
-  const secret = process.env.FACEBOOK_SECRET_KEY;
-  const code = req.query.code;
-
-  res.redirect(`https://www.facebook.com/v10.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUrl}&client_secret=${secret}&code=${code}`);
+  res.send(`This is the response: ${req.body}`);
 }
 
-module.exports = { loginRender, loginSubmit, loginFacebookRedirect, facebookAuth, facebookToken };
+module.exports = { loginRender, loginSubmit, loginFacebookRedirect, facebookCode, facebookToken };
