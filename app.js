@@ -3,6 +3,13 @@ const app = express();
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const sass = require("node-sass-middleware");
+const https = require('https');
+const fs = require('fs');
+
+const options = {
+  key: fs.readFileSync(__dirname + '/server.key'),
+  cert: fs.readFileSync(__dirname + '/server.cert'),
+};
 
 const homeRoute = require("./routes/homeRoute");
 const registerRoute = require("./routes/registerRoute");
@@ -16,6 +23,7 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(express.json());
 
 app.use(
   sass({
@@ -36,8 +44,12 @@ mongoose.connect(
   (error) => {
     if (error) return;
 
-    app.listen(process.env.PORT || 3000, () => {
+    https.createServer(options, app).listen(process.env.PORT || 3000, () => {
       console.log("App running on port 3000");
     });
+
+    // app.listen(process.env.PORT || 3000, () => {
+    //   console.log("App running on port 3000");
+    // });
   }
 );
