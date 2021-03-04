@@ -18,12 +18,16 @@
     color: $secondary-color;
   }
   form {
+    display: flex;
+    flex-direction: column;
     label {
+      display: inline-block;
       margin-left: 1rem;
       text-align: left;
     }
-    display: flex;
-    flex-direction: column;
+    a:link {
+      display: inline-block;
+    }
     input {
       font-size: 1.7rem;
       height: 5rem;
@@ -37,6 +41,14 @@
     input:focus {
       background-color: #000;
       outline: none;
+    }
+    #passwordDiv {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      a {
+        font-size: 1.4rem;
+      }
     }
     button {
       font-weight: bold;
@@ -60,7 +72,7 @@
     justify-content: center;
     width: 100%;
     font-size: 1.7rem;
-    background-color: #3B5998;
+    background-color: #3b5998;
     color: white;
     height: 5rem;
     padding: 1rem;
@@ -73,7 +85,7 @@
     }
   }
   #facebookButton:hover {
-    background-color: #8B9DC3;
+    background-color: #8b9dc3;
     cursor: pointer;
   }
 }
