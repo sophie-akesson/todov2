@@ -1,0 +1,97 @@
+#formsContainer {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  label,
+  a:link,
+  a:visited {
+    display: block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: $accent-color;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  a:hover {
+    color: $secondary-color;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    label {
+      display: inline-block;
+      margin-left: 1rem;
+      text-align: left;
+    }
+    a:link {
+      display: inline-block;
+    }
+    input {
+      font-size: 1.7rem;
+      height: 5rem;
+      color: white;
+      background-color: rgba($color: #000000, $alpha: 0.5);
+      border: none;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    input:focus {
+      background-color: #000;
+      outline: none;
+    }
+    #passwordDiv {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      a {
+        font-size: 1.4rem;
+      }
+    }
+    button {
+      font-weight: bold;
+      font-size: 1.7rem;
+      background-color: white;
+      height: 5rem;
+      padding: 1rem;
+      outline: none;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 1rem;
+    }
+    button:hover {
+      background-color: $accent-color;
+    }
+  }
+  #facebookButton {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 1.7rem;
+    background-color: #3b5998;
+    color: white;
+    height: 5rem;
+    padding: 1rem;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 1rem;
+    i {
+      margin-right: 1rem;
+    }
+  }
+  #facebookButton:hover {
+    background-color: #8b9dc3;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) {
+  #formsContainer {
+    width: 50rem;
+  }
+}

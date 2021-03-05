@@ -1,0 +1,95 @@
+header {
+    color: $secondary-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #iconsDiv {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      h3 {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .fas {
+        width: 2rem;
+        padding: 2rem;
+      }
+      .fa-times {
+        position:absolute;
+        opacity: 0;
+      }
+      .fa-bars {
+        position: static;
+        transition: opacity ease-in-out 0.5s;
+      }
+    }
+    #menuDiv {
+      max-height: 0;
+      width: 100%;
+      overflow: hidden;
+      transition: max-height ease-in-out 1s;
+      a:link, a:visited {
+        display: block;
+        padding: 1rem;
+        margin-left: 1rem;
+        color: $accent-color;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      a:hover {
+          color: $secondary-color;
+      }
+    }
+    input {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 2rem;
+      width: 4rem;
+      height: 4rem;
+      cursor: pointer;
+      z-index: 100;
+    }
+    input:checked ~ #iconsDiv .fa-times {
+      position: static;
+      opacity: 1;
+      transition: opacity ease-in-out 0.5s;
+    }
+  
+    input:checked ~ #iconsDiv .fa-bars {
+      position: absolute;
+      opacity: 0;
+    }
+  
+    input:checked ~ #menuDiv {
+      max-height: 20rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    header {
+        width: 20rem;
+        .fas {
+            display:none;
+        }
+        input {
+            display: none;
+        }
+        #iconsDiv {
+            h3 {
+                margin-top: 2.5rem;
+                margin-bottom: 1.5rem;
+                margin-left:2rem;
+                margin-right:1rem;
+            }
+        }
+        #menuDiv {
+            max-height: 20rem;
+        }
+    }
+  }

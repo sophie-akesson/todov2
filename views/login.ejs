@@ -1,0 +1,22 @@
+<%- include('header'); -%>
+<main>
+    <div id="formsContainer">
+        <h3>Login</h3>
+        <% if (error) { %>
+            <p><%= error %></p>
+        <% } %>
+        <form action="/login" method="post">
+            <label for="email">Email</label><input id="email" name="email" type="email">
+            <div id="passwordDiv"><label for="password">Password</label><a href="/reset">Forgot password?</a></div>
+            <input id="password" name="password" type="password">
+            <button type="submit">Login</button>
+        </form>
+        <!-- <a href="/reset">Forgot password?</a> -->
+        <div id="loginPageLinksContainer">
+        <a href="/register">Create an account</a>
+        <p>or</p>
+        <a href="/auth/facebook"><button type="button" id="facebookButton"><i class="fab fa-facebook-square fa-2x"></i>Login using Facebook</button></a>
+        </div>
+    </div>
+</main>
+<%- include('header'); -%>

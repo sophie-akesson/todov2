@@ -1,0 +1,17 @@
+<%- include('header'); -%>
+<main>
+    <div id="formsContainer">
+        <h3>Register</h3>
+        <% if (error) { %>
+            <p><%= error %></p>
+        <% } %>
+        <form action="/register" method="post">
+            <label for="name">Name</label><input id="name" name="name" type="name">
+            <label for="email">Email</label><input id="email" name="email" type="email">
+            <label for="password">Password</label><input id="password" name="password" type="password">
+            <button type="submit">Create account</button>
+        </form>
+        <a href="/">Back</a>
+    </div>
+</main>
+<%- include('header'); -%>

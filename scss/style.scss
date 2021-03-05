@@ -1,0 +1,118 @@
+@import "./variables";
+@import "./header";
+@import "./footer";
+@import "./list";
+@import "./formsDiv";
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: rgb(61, 61, 61);
+  background-color: $accent-color;
+  background-image: url("../images/gazelle-5992510_1920.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.7rem;
+  height: 100vh;
+}
+
+main {
+  color: $secondary-color;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  #infoDiv {
+    display: flex;
+    flex-direction: column;
+    p {
+      margin-left: 1rem;
+      font-weight: bold;
+    }
+    div {
+      display: flex;
+    
+    }
+    a:link, a:visited {
+      align-self: center;
+      display: block;
+      padding: 1rem;
+      color: $accent-color;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      color: $secondary-color;
+    }
+  }
+
+  .loadMoreLink:link,
+  .loadMoreLink:visited {
+    align-self: center;
+    display: block;
+    padding: 1rem;
+    color: $accent-color;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .loadMoreLink:hover {
+    color: $secondary-color;
+  }
+  .loadMoreLink {
+    margin: 1rem;
+  }
+  h3 {
+    margin: 0;
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    flex-direction: row;
+  }
+  main {
+    margin: 0;
+    width: 80rem;
+    #infoDiv {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: space-between;
+      p {
+        margin-left: 1rem;
+        font-weight: bold;
+      }
+      div {
+        display: flex;
+      }
+    }
+    ul {
+      margin: 0;
+    }
+    h3 {
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
+      margin-left: 2rem;
+      margin-right: 1rem;
+    }
+  }
+  footer {
+    margin-left: 4rem;
+    margin-top: 6.5rem;
+    width: 45rem;
+  }
+}

@@ -1,0 +1,27 @@
+<%- include('header'); -%>
+<main>
+  <% if (error) {%>
+    <p><%= error %></p>
+  <% } %>
+  <div id="infoDiv">
+    <% if(path === "/") { %>
+        <h3>All to dos</h3>
+      <% } %>
+    <% if(path === "/starred") { %>
+        <h3>Starred</h3>
+    <% } %>
+    <% if(path === "/due") { %>
+        <h3>Due this week</h3>
+      <% } %>
+    <% if(path === "/completed") { %>
+      <h3>Completed to dos</h3>
+    <% } %>
+    <div>
+      <p>Date sorting:</p>
+      <a href="<%= path %>?count=<%= count %>&sort=asc">Asc</a>
+      <a href="<%= path %>?count=<%= count %>&sort=desc">Desc</a></p>
+    </div>
+  </div>
+    <%- include('toDoList'); -%>
+</main>
+<%- include('footer'); -%>

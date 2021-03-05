@@ -1,0 +1,41 @@
+<% if (data.length > 0) { %>
+    <ul>
+        <% for(let i = 0; i < count && i < data.length; i++) { %>
+            <% const date = data[i].dueDate; %>
+            <% const year = date.getFullYear(); %>
+            <% let month = date.getMonth() + 1; %>
+            <% if (month < 10) { month = '0' + month; } %>
+            <% let day = date.getDate(); %>
+            <% if (day < 10) { day = '0' + day; } %>
+            <% const convertedDate = `${year}-${month}-${day}`; %>
+            <% if(path !== "/completed") { %>
+            <li>
+                <form class="completeForm" action="/complete/<%= data[i]._id %>">
+                    <label><input type="checkbox" name="checkbox" onChange="this.form.submit()"><%= data[i].name %></label>
+                </form>
+            <% } %>
+            <% if(path === "/completed") { %>
+            <li class="compeltedListItem">
+                <form class="completeForm" action="/complete/<%= data[i]._id %>">
+                    <label><input type="checkbox" name="checkbox" onChange="this.form.submit()" disabled checked><%= data[i].name %></label>
+                </form>
+            <% } %>
+            <div>
+                <p>Due: <%= convertedDate %></p>
+                <div class="taskLinks">
+                    <% if(path !== "/completed") { %>
+                        <a href="/star/<%= data[i]._id %>"><i class="fas fa-star fa-lg"></i></a>
+                    <% } %>
+                    <a href="/remove/<%= data[i]._id %>"><i class="fas fa-times-circle fa-lg"></i></a>
+                </div> 
+            </div>
+            </li>
+        <% } %>
+    </ul>
+<% } %>
+<% if (count < nrOfToDos) { %>
+    <a class="loadMoreLink" href="<%= path %>?count=<%= count + 5 %>">Load more</a>
+<% } %>
+<% if (count > 5) { %>
+    <a class="loadMoreLink" href="<%= path %>">Show less</a>
+<% } %>
