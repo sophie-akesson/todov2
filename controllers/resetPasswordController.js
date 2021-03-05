@@ -19,7 +19,8 @@ const resetRender = (req, res) => {
 };
 
 const resetSubmit = async (req, res) => {
-  const email = req.body.email;
+  try {
+    const email = req.body.email;
 
   const user = await User.findOne({ email: email });
 
@@ -41,6 +42,9 @@ const resetSubmit = async (req, res) => {
   });
 
   res.render("checkMail.ejs", { email: email, user: "" });
+  } catch(error) {
+    res.render("resetPassword.ejs", { error: error, user: "" });
+  }
 };
 
 const setPasswordRender = async (req, res) => {

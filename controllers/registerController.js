@@ -21,7 +21,7 @@ const registerSubmit = async (req, res) => {
 
     res.redirect(301, "/login");
   } catch (error) {
-    if(error) return res.render("register.ejs", { error: error, user: "" })
+      return res.render("register.ejs", { error: error, user: "" })
   }
 };
 

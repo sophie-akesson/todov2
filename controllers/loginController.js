@@ -10,48 +10,54 @@ const loginRender = (req, res) => {
 };
 
 const loginSubmit = async (req, res) => {
-  const user = await User.findOne({ email: req.body.email });
+  try {
+    const user = await User.findOne({ email: req.body.email });
 
-  if (!user)
-    return res.render("login.ejs", { error: "Invalid user", user: "" });
+    if (!user)
+      return res.render("login.ejs", { error: "Invalid user", user: "" });
 
-  const validUser = await bcrypt.compare(req.body.password, user.password);
+    const validUser = await bcrypt.compare(req.body.password, user.password);
 
-  if (!validUser)
-    return res.render("login.ejs", { error: "Wrong password", user: "" });
+    if (!validUser)
+      return res.render("login.ejs", { error: "Wrong password", user: "" });
 
-  const loginToken = await jwt.sign({ user: user }, process.env.JWT_KEY);
+    const loginToken = await jwt.sign({ user: user }, process.env.JWT_KEY);
 
-  if (loginToken) {
-    const cookie = req.cookies.loginToken;
-    if (!cookie)
-      res.cookie("loginToken", loginToken, {
-        maxAge: 360000000,
-        httpOnly: true,
-      });
-    return res.redirect(301, "/");
+    if (loginToken) {
+      const cookie = req.cookies.loginToken;
+      if (!cookie)
+        res.cookie("loginToken", loginToken, {
+          maxAge: 360000000,
+          httpOnly: true,
+        });
+      return res.redirect(301, "/");
+    }
+  } catch (error) {
+    res.render("login.ejs", { error: error, user: "" });
   }
-
-  return res.redirect(301, "/login");
 };
 
 const loginFacebookRedirect = (req, res) => {
-  const redirectUrl = "https://localhost:3000/auth/facebook/login";
-  const appId = process.env.FACEBOOK_ID;
-  const state = process.env.FACEBOOK_STATE;
+  try {
+    const redirectUrl = "https://localhost:3000/auth/facebook/login";
+    const appId = process.env.FACEBOOK_ID;
+    const state = process.env.FACEBOOK_STATE;
 
-  res.redirect(
-    `https://www.facebook.com/v10.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUrl}&state=${state}&scope=email`
-  );
+    res.redirect(
+      `https://www.facebook.com/v10.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUrl}&state=${state}&scope=email`
+    );
+  } catch (error) {
+    res.render("login.ejs", { error: error, user: "" });
+  }
 };
 
 const facebookLogin = async (req, res) => {
-  const redirectUrl = "https://localhost:3000/auth/facebook/login";
-  const appId = process.env.FACEBOOK_ID;
-  const secret = process.env.FACEBOOK_SECRET_KEY;
-  const code = req.query.code;
-
   try {
+    const redirectUrl = "https://localhost:3000/auth/facebook/login";
+    const appId = process.env.FACEBOOK_ID;
+    const secret = process.env.FACEBOOK_SECRET_KEY;
+    const code = req.query.code;
+
     const tokenResponse = await fetch(
       `https://graph.facebook.com/v10.0/oauth/access_token?client_id=${appId}&redirect_uri=${redirectUrl}&client_secret=${secret}&code=${code}`
     );

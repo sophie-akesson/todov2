@@ -20,6 +20,10 @@ const newToDoSubmit = async (req, res) => {
       user: "",
       error: error,
       data: "",
+      nrOfToDos: 0,
+      count: 0,
+      path: path,
+      sort: "asc",
     });
   }
 };
@@ -37,6 +41,10 @@ const removeSubmit = async (req, res) => {
       user: "",
       error: error,
       data: "",
+      nrOfToDos: 0,
+      count: 0,
+      path: path,
+      sort: "asc",
     });
   }
 };
@@ -57,6 +65,10 @@ const completeSubmit = async (req, res) => {
       user: "",
       error: error,
       data: "",
+      nrOfToDos: 0,
+      count: 0,
+      path: path,
+      sort: "asc",
     });
   }
 };
@@ -79,6 +91,10 @@ const starSubmit = async (req, res) => {
       user: "",
       error: error,
       data: "",
+      nrOfToDos: 0,
+      count: 0,
+      path: path,
+      sort: "asc",
     });
   }
 };
