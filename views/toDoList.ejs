@@ -21,7 +21,7 @@
                 </form>
             <% } %>
             <div>
-                <p><%= convertedDate %></p>
+                <p>Due: <%= convertedDate %></p>
                 <div class="taskLinks">
                     <% if(path !== "/completed") { %>
                         <a href="/star/<%= data[i]._id %>"><i class="fas fa-star fa-lg"></i></a>

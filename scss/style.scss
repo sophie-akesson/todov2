@@ -34,6 +34,31 @@ main {
   margin: 1rem;
   display: flex;
   flex-direction: column;
+
+  #infoDiv {
+    display: flex;
+    flex-direction: column;
+    p {
+      margin-left: 1rem;
+      font-weight: bold;
+    }
+    div {
+      display: flex;
+    
+    }
+    a:link, a:visited {
+      align-self: center;
+      display: block;
+      padding: 1rem;
+      color: $accent-color;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      color: $secondary-color;
+    }
+  }
+
   .loadMoreLink:link,
   .loadMoreLink:visited {
     align-self: center;
@@ -62,6 +87,19 @@ main {
   main {
     margin: 0;
     width: 80rem;
+    #infoDiv {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: space-between;
+      p {
+        margin-left: 1rem;
+        font-weight: bold;
+      }
+      div {
+        display: flex;
+      }
+    }
     ul {
       margin: 0;
     }
