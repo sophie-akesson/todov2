@@ -35,7 +35,8 @@ const homeRender = async (req, res) => {
       user: "",
       error: error,
       data: "",
-      count: count,
+      nrOfToDos: 0,
+      count: 0,
       path: "/",
       sort: sort,
     });
@@ -76,7 +77,8 @@ const starredRender = async (req, res) => {
       user: "",
       error: error,
       data: "",
-      count: count,
+      nrOfToDos: 0,
+      count: 0,
       path: "/starred",
       sort: sort,
     });
@@ -129,7 +131,8 @@ const dueThisWeekRender = async (req, res) => {
       user: "",
       error: error,
       data: "",
-      count: count,
+      nrOfToDos: 0,
+      count: 0,
       path: "/due",
       sort: sort,
     });
@@ -170,6 +173,8 @@ const completedToDosRender = async (req, res) => {
       user: "",
       error: error,
       data: "",
+      nrOfToDos: 0,
+      count: count,
       path: "/completed",
       sort: sort,
     });
