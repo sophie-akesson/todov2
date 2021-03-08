@@ -36,7 +36,7 @@ Clone the repo and install the dependencies using the following steps:
 
 1. Clone the repo using Git.
 ```
-git clone https://github.com/sophie-akesson/todo.git
+git clone https://github.com/sophie-akesson/todov2.git
 ```
 
 2. Install dependencies using npm.
