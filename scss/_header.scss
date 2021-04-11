@@ -1,51 +1,27 @@
 header {
-    color: $secondary-color;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  color: $secondary-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  #iconsDiv {
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    #iconsDiv {
-      width: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      h3 {
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-      .fas {
-        width: 2rem;
-        padding: 2rem;
-      }
-      .fa-times {
-        position:absolute;
-        opacity: 0;
-      }
-      .fa-bars {
-        position: static;
-        transition: opacity ease-in-out 0.5s;
-      }
+    h3 {
+      color: $accent-color;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2.7rem;
+      margin-bottom: 2.7rem;
     }
-    #menuDiv {
-      max-height: 0;
-      width: 100%;
-      overflow: hidden;
-      transition: max-height ease-in-out 1s;
-      a:link, a:visited {
-        display: block;
-        padding: 1rem;
-        margin-left: 1rem;
-        color: $accent-color;
-        font-weight: bold;
-        text-decoration: none;
-      }
-      a:hover {
-          color: $secondary-color;
-      }
+    .fas {
+      color: $accent-color;
     }
-    input {
-      opacity: 0;
+    #navButton {
+      background-color: rgba($color: #000000, $alpha: 0);
+      border: 0;
       position: absolute;
       top: 0;
       left: 0;
@@ -55,41 +31,81 @@ header {
       cursor: pointer;
       z-index: 100;
     }
-    input:checked ~ #iconsDiv .fa-times {
-      position: static;
-      opacity: 1;
-      transition: opacity ease-in-out 0.5s;
+    #navButton:focus {
+      outline: 1px solid rgba($color: #fff, $alpha: 1);
     }
-  
-    input:checked ~ #iconsDiv .fa-bars {
-      position: absolute;
-      opacity: 0;
+    .menuClosed {
+      .fa-times {
+        position: absolute;
+        opacity: 0;
+      }
+      .fa-bars {
+        position: static;
+        transition: opacity ease-in-out 0.5s;
+      }
     }
-  
-    input:checked ~ #menuDiv {
+    .menuOpen {
+      .fa-times {
+        position: static;
+        opacity: 1;
+        transition: opacity ease-in-out 0.5s;
+      }
+      .fa-bars {
+        position: absolute;
+        opacity: 0;
+      }
+    }
+  }
+  #menuDiv {
+    width: 100%;
+    overflow: hidden;
+    a:link,
+    a:visited {
+      text-decoration: underline;
+      display: block;
+      padding: 1rem;
+      margin-left: 1rem;
+      color: $accent-color;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      color: $secondary-color;
+    }
+    a:focus{
+      outline: 1px solid rgba($color: #fff, $alpha: 1);
+    }
+  }
+}
+
+.menuHide {
+  max-height: 0;
+}
+
+.menuShow {
+  max-height: 23rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  header {
+    width: 30rem;
+    .fas {
+      display: none;
+    }
+    input {
+      display: none;
+    }
+    #iconsDiv {
+      h3 {
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        margin-left: 2rem;
+        margin-right: 1rem;
+      }
+    }
+    #menuDiv {
       max-height: 20rem;
     }
   }
-  
-  @media (min-width: 768px) {
-    header {
-        width: 20rem;
-        .fas {
-            display:none;
-        }
-        input {
-            display: none;
-        }
-        #iconsDiv {
-            h3 {
-                margin-top: 2.5rem;
-                margin-bottom: 1.5rem;
-                margin-left:2rem;
-                margin-right:1rem;
-            }
-        }
-        #menuDiv {
-            max-height: 20rem;
-        }
-    }
-  }
+}

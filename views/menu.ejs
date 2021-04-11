@@ -1,11 +1,13 @@
 <header>
-  <input type="checkbox">
-  <div id="iconsDiv">
-    <i class="fas fa-bars fa-2x"></i>
-    <i class="fas fa-times fa-2x"></i>
-    <h3><%= user %></h3>
-  </div>
-  <div id="menuDiv">
+    <div id="iconsDiv">
+      <button id="navButton" class="menuClosed">
+        <i class="fas fa-bars fa-2x"></i>
+        <i class="fas fa-times fa-2x"></i>
+      </button>
+      <h3><%= user %></h3>
+    </div>
+  </button>
+  <div id="menuDiv" class="menuHide">
     <a href="/">All to dos</a>
     <a href="/starred">Starred</a>
     <a href="/due">Due this week</a>
@@ -13,3 +15,13 @@
     <a href="/logout">Log out</a>
   </div>
 </header>
+<script>
+  let navButton = document.getElementById("navButton");
+  let menu = document.getElementById("menuDiv");
+  navButton.addEventListener("click", () => {
+    navButton.classList.toggle("menuClosed");
+    navButton.classList.toggle("menuOpen");
+    menu.classList.toggle("menuHide");
+    menu.classList.toggle("menuShow");
+  });
+</script>
