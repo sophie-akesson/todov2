@@ -11,6 +11,7 @@
 }
 
 html {
+  overflow: overlay;
   font-size: 62.5%;
 }
 
@@ -27,11 +28,15 @@ body {
   flex-direction: column;
   font-size: 1.7rem;
   height: 100vh;
+  width: 100vw;
 }
 
 main {
-  color: $secondary-color;
-  margin: 1rem;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  height: 100%;
+  width: 100%;
+  color: $accent-color;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
 
@@ -47,12 +52,12 @@ main {
     
     }
     a:link, a:visited {
+      text-decoration: underline;
       align-self: center;
       display: block;
       padding: 1rem;
       color: $accent-color;
       font-weight: bold;
-      text-decoration: none;
     }
     a:hover {
       color: $secondary-color;
@@ -61,6 +66,7 @@ main {
 
   .loadMoreLink:link,
   .loadMoreLink:visited {
+    text-decoration: underline;
     align-self: center;
     display: block;
     padding: 1rem;
@@ -86,7 +92,6 @@ main {
   }
   main {
     margin: 0;
-    width: 80rem;
     #infoDiv {
       display: flex;
       flex-direction: row;
@@ -109,10 +114,5 @@ main {
       margin-left: 2rem;
       margin-right: 1rem;
     }
-  }
-  footer {
-    margin-left: 4rem;
-    margin-top: 6.5rem;
-    width: 45rem;
   }
 }
