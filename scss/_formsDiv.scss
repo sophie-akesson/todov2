@@ -17,7 +17,7 @@
     text-decoration: underline;
   }
   a:hover {
-    color: $secondary-color;;
+    color: $secondary-color;
   }
   form {
     display: flex;
@@ -35,7 +35,7 @@
       font-size: 1.7rem;
       height: 5rem;
       color: white;
-      background-color: rgba($color: #000000, $alpha: 0.5);
+      background-color: rgba($color: #df5e6e, $alpha: 0.5);
       border: none;
       border-radius: 5px;
       padding: 1rem;
@@ -43,7 +43,6 @@
     }
     input:focus {
       background-color: #000;
-      outline: none;
     }
     #passwordDiv {
       display: flex;
@@ -93,7 +92,6 @@
     text-decoration: none;
   }
 }
-
 
 @media (min-width: 768px) {
   #formsContainer {
