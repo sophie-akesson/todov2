@@ -41,14 +41,20 @@ ul {
   }
   .completeForm {
     margin-right: auto;
-    label,
-    input {
-      display: flex;
+    label {
+      width: 70%;
+      margin-left: 4rem;
+      float: left;
+      vertical-align: middle;
     }
     input {
-      width: 2rem;
-      height: 2rem;
-      align-self: center;
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin: 0;
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: -4rem;
       margin-right: 2rem;
     }
   }
