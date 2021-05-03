@@ -2,6 +2,10 @@
 
 A basic to do list using. This was made for the second assignment in the course Dynamic web development at Medieinstitutet.
 
+## Demo
+https://sleepy-springs-69145.herokuapp.com/
+NOTE: Facebook Login will not work in the demo because the app has not been put up for review by Facebook.
+
 ## Functionality
 
 - User registration
