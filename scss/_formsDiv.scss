@@ -35,14 +35,15 @@
       font-size: 1.7rem;
       height: 5rem;
       color: white;
-      background-color: rgba($color: #df5e6e, $alpha: 0.5);
+      background-color: rgba($color: #df5e6e, $alpha: 1);
       border: none;
       border-radius: 5px;
       padding: 1rem;
       margin-bottom: 1rem;
     }
     input:focus {
-      background-color: #000;
+      border: 2px solid #fff;
+      outline: none;
     }
     #passwordDiv {
       display: flex;
@@ -93,7 +94,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   #formsContainer {
     width: 50rem;
   }
