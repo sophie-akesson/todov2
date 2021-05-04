@@ -5,6 +5,7 @@ A basic to do list using. This was made for the second assignment in the course 
 ## Demo
 https://sleepy-springs-69145.herokuapp.com/
 NOTE: Slow load due to being on a free dyno. Also Facebook Login will not work in the demo because the app has not been put up for review by Facebook.
+NOTE2: Feel free to contact me if you wish to have your user removed.
 
 ## Functionality
 
