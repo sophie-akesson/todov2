@@ -17,8 +17,8 @@ footer {
         margin-bottom: 1rem;
       }
       input:focus {
-        background-color: #000;
-        outline: 1px solid rgba($color: #fff, $alpha: 1);
+        outline: none;
+        border: 2px solid #fff;
       }
       button {
         font-size: 1.7rem;
@@ -29,11 +29,14 @@ footer {
         border-radius: 5px;
         border: none;
         margin-bottom: 1rem;
+        color: #df5e6e;
+        font-weight: bold;
       }
       button:focus {
-        outline: 3px solid rgba($color: orange, $alpha: 1);
+        outline: 3px solid rgba($color: #fff, $alpha: 1);
       }
       button:hover {
+        color: #fff;
         background-color: $accent-color;
       }
       ::-webkit-calendar-picker-indicator {
@@ -47,14 +50,7 @@ footer {
   footer {
     margin-top: 0;
     padding-left: 1rem;
-    padding-top: 6.5rem;
+    padding-top: 76px;
     width: 60rem;
-    #newToDoDiv {
-      form {
-        input {
-          background-color: rgba($color: #df5e6e, $alpha: 0.5);
-        }
-      }
-    }
   }
 }
