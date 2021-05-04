@@ -7,6 +7,9 @@ https://sleepy-springs-69145.herokuapp.com/
 NOTE: Slow load due to being on a free dyno. Also Facebook Login will not work in the demo because the app has not been put up for review by Facebook.
 NOTE2: Feel free to contact me if you wish to have your user removed.
 
+## Credit
+Big thanks to [rmRadev at Deviantart](https://www.deviantart.com/rmradev) for the background image.
+
 ## Functionality
 
 - User registration
